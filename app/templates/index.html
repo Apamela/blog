@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+{% include 'navbar.html'%}
+
+{% block content %}
+<div class="container-fluid welcome-page">
+        <div class="container">
+<h3 style="color: rgb(7, 7, 7);text-align: center">Blog Categories</h3>
+      
+      <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#product" style="color: rgb(5, 5, 5);">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#traditional" style="color: rgb(5, 5, 5);">Traditional</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#quotes" style="color: rgb(7, 6, 6);">quotes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#games" style="color: rgb(5, 5, 5);">Games</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="product" class="container tab-pane fade">
+          {{ macro.display(productpitch) }}
+          
+        </div>
+        <div id="traditional" class="container tab-pane fade">
+          {{ macro.display(traditionalpitch) }}
+        </div>
+        <div id="quotes" class="container tab-pane fade">
+          {{ macro.display(quotes)}}
+        </div>
+        <div id="games" class="container tab-pane fade">
+          {{ macro.display(gamesblog) }}
+        </div>
+        
+      </div>
+
+    
+        <img src="https://i.enkiquotes.com/974kRxHpruLd9PT_EmR5eJdJVyU=/400x0//images/2016/09/c8ec12759ebf5a38a1523a2840803e4c.png">
+    
+<div class="row">
+<div class="col-md-12 welcome">
+    {% if current_user.is_authenticated%}
+    <a id="start" class="btn btn-danger animated infinite flash" href="{{url_for('main.index')}}">See all Pitches</a>
+    {% else %}
+    <a id="start" class="btn btn-danger animated infinite flash" href="{{url_for('auth.login')}}">Sign In</a>
+    {% endif %}
+ 
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
