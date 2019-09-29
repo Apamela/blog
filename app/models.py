@@ -12,9 +12,9 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
     pass_secure = db.Column(db.String(255))
-    upvotes = db.relationship('Upvote',backref = 'user',lazy = "dynamic")
-    pitches= db.relationship('Pitch',backref = 'user',lazy = "dynamic")
-    downvotes= db.relationship('Downvote',backref = 'user',lazy = "dynamic")
+    updates = db.relationship('Update',backref = 'user',lazy = "dynamic")
+    bloges= db.relationship('Blog',backref = 'user',lazy = "dynamic")
+    
    
     @property
     def password(self):
@@ -32,7 +32,7 @@ class User(UserMixin,db.Model):
 
 class blog(db.Model):
 
-    __tablename__ ='pitches'
+    __tablename__ ='bloges'
 
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String)

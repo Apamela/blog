@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from .forms import BlogForm,UpdateProfile
-from ..models import User,PhotoProfile                          
+from ..models import User,PhotoProfile,Comment                          
 from flask_login import login_required,current_user
 from .. import db
 
@@ -26,7 +26,7 @@ def index():
 @login_required
 def new_blog():
     form = blogForm()
-    my_upvotes = Upvote.query.filter_by(blog_id = blog.id)
+    my_updates = Update.query.filter_by(blog_id = blog.id)
     if form.validate_on_submit():
         description = form.description.data
         title = form.title.data
@@ -57,9 +57,9 @@ def new_comment(blog_id):
 
     all_comments = Comment.query.filter_by(blog_id = blog_id).all()
     return render_template('comments.html', form = form, comment = all_comments, blog = blog )
-@main.route('/user/<uname>')
+@main.route('/user/<int:blog_id>')
 @login_required
-def profile(uname):
+def new_profile(blog_id):
     user = User.query.filter_by(username = uname).first()
 
     if user is None:
