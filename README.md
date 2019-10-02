@@ -22,7 +22,7 @@ Clone this repository and navigate to the folder. Run the following commands to 
 ## Known Bugs
  No known bugs so far
 
-Contact and Email Adress
+## Contact and Email Adress
 Number:+250780365718 Email: pamelab.desire@gmail.com
 
 License
