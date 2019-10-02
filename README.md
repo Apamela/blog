@@ -2,7 +2,7 @@
 ## By pamela
 ## Description
 This is the blog project where we allow the pleople to post there blog or the quotes and to access on it
-by signup there emails and passwords .
+by signup there  by using emails and passwords .
 ## Installation Requirements
 Clone this repository and navigate to the folder. Run the following commands to allow functionality of the app:-
 
