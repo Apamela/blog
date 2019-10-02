@@ -2,7 +2,7 @@
 ## By pamela
 ## Description
 This is the blog project where we allow the pleople to post there blog or the quotes and to access on it
-by signup there  by using emails ,username and passwords , the user is able to see all post
+by signup there  by using emails ,username and passwords , the user is able to see all post and commit on it.
 ## Installation Requirements
 Clone this repository and navigate to the folder. Run the following commands to allow functionality of the app:-
 
