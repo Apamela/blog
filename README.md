@@ -6,7 +6,7 @@ by sign in there emails and passwords .
 ## Installation Requirements
 Clone this repository and navigate to the folder. Run the following commands to allow functionality of the app:-
 
-* sudo apt-get update
+*sudo apt-get update
 * sudo apt-get install python3.6
 * sudo apt-get install python3-pip
 * sudo apt-get install python3.6-venv
