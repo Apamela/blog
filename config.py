@@ -2,6 +2,7 @@ import os
 
 class Config:
 
+    
     SECRET_KEY = 'powerful secret key'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     # simple mde  configurations

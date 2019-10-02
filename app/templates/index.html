@@ -1,58 +1,42 @@
-{% extends 'base.html'%}
-{% import 'macros.html' as macro %}
-{% include 'navbar.html'%}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container-fluid welcome-page">
-        <div class="container">
-<h3 style="color: rgb(7, 7, 7);text-align: center">Blog Categories</h3>
-      
-      <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#product" style="color: rgb(5, 5, 5);">Product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#traditional" style="color: rgb(5, 5, 5);">Traditional</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#quotes" style="color: rgb(7, 6, 6);">quotes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#games" style="color: rgb(5, 5, 5);">Games</a>
-        </li>
-      </ul>
+<!-- Styles block -->
 
-      <div class="tab-content">
-        <div id="product" class="container tab-pane fade">
-          {{ macro.display(productpitch) }}
-          
-        </div>
-        <div id="traditional" class="container tab-pane fade">
-          {{ macro.display(traditionalpitch) }}
-        </div>
-        <div id="quotes" class="container tab-pane fade">
-          {{ macro.display(quotes)}}
-        </div>
-        <div id="games" class="container tab-pane fade">
-          {{ macro.display(gamesblog) }}
-        </div>
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+{% endblock %}
+<!-- Content block -->
+<div class="landingspot">
+    <div class="container-fluid">
+        <div class="textmiddle">
+            <h1>Welcome to Blog</h1>
+            <p>{{ quotes.quote }}</p>
+            <footer><p>{{ quotes.author }}</p></footer>
         
-      </div>
-
-    
-        <img src="https://i.enkiquotes.com/974kRxHpruLd9PT_EmR5eJdJVyU=/400x0//images/2016/09/c8ec12759ebf5a38a1523a2840803e4c.png">
-    
-<div class="row">
-<div class="col-md-12 welcome">
-    {% if current_user.is_authenticated%}
-    <a id="start" class="btn btn-danger animated infinite flash" href="{{url_for('main.index')}}">See all Pitches</a>
-    {% else %}
-    <a id="start" class="btn btn-danger animated infinite flash" href="{{url_for('auth.login')}}">Sign In</a>
-    {% endif %}
- 
+        
+        </div>
     </div>
 </div>
-</div>
-</div>
+<!-- tag display Blog elements -->
+        <div>
+                <h1>Blogs </h1>
+                {% for blog in blogs %}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ blog.blog }}</div>
+                        <div class="panel-body">
+                            <p style="line-height:1,2em;font-family: 'Times New Roman', Times, serif;font-size:18px;">{{ blog.category| truncate(180) }}</p>
+                        <footer><p style="margin-left:400px;"><strong>{{ blog.user.username }}</strong></p></footer>
+                            <a href="{{url_for('main.new_comment',blog_id=blog.id)}}" class="btn btn-success">comment</a> 
+                            
+                            <!-- <a href="{{url_for('main.comment',blog_id=blog.id)}}" class="btn btn-primary">comment</a>  -->
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
 
 {% endblock %}

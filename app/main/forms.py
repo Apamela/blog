@@ -20,13 +20,18 @@ class RegistrationForm(FlaskForm):
 class BlogForm(FlaskForm):
     title = TextAreaField('Title',validators = [Required()])
     description = TextAreaField(" the blog you need",validators=[Required()])
-    bcategory = RadioField('Label', choices=[ ('gamesblog','gamesblog'), ('traditionalblog','traditionalblog'),('quotes','quotes'),('productblog','productblog')],validators=[Required()])
+    category = RadioField('Label', choices=[ ('gamesblog','gamesblog'), ('traditionalblog','traditionalblog'),('quotes','quotes'),('productblog','productblog')],validators=[Required()])
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
 	description = TextAreaField('Add comment',validators=[Required()])
 	submit = SubmitField()
 
-class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us about you.',validators = [Required()])
+class UpdateBlogForm(FlaskForm):
+    title = TextAreaField('Tell us about you.',validators = [Required()])
+    image=TextAreaField('your images',validators=[Required()])
+    description=TextAreaField(" the blog you need",validators=[Required()])
+    submit = SubmitField('Submit')
+class UpdateProfileForm(FlaskForm):
+    bio = TextAreaField('Tell us about your you.',validators = [Required()])
     submit = SubmitField('Submit')
