@@ -14,7 +14,7 @@ Clone this repository and navigate to the folder. Run the following commands to 
 * source virtual/bin/activate
 * pip install -r requirements.txt
 ## Technologies Used
-* Python 3.6
+* Python 3.6 or 3.6.5
 * HTML, CSS and Bootstrap
 * Flask Framework
 * Postgressql
