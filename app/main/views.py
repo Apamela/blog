@@ -86,3 +86,17 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
+@main.route('/delete_blog/<int:blog_id>',methods= ['POST','GET'])
+@login_required
+def delete_blog(blog_id):
+  blog= blog.query.filter_by(id = blog_id).first()
+  comments=post.comments
+  if post.comments:
+    for comment in comments:
+        db.session.delete(comment)
+        db.session.commit()
+  user = current_user
+  db.session.delete(post)
+  db.session.commit()
+  return redirect(url_for('main.index'))
+  return render_template('index.html', user=user)
