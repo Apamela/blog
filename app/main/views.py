@@ -90,8 +90,8 @@ def update_pic(uname):
 @login_required
 def delete_blog(blog_id):
   blog= blog.query.filter_by(id = blog_id).first()
-  comments=post.comments
-  if post.comments:
+  comments=blog.comments
+  if blog.comments:
     for comment in comments:
         db.session.delete(comment)
         db.session.commit()
