@@ -17,21 +17,16 @@ class RegistrationForm(FlaskForm):
         if User.query.filter_by(username = data_field.data).first():
             raise ValidationError('That username is taken')
 
+
 class BlogForm(FlaskForm):
     title = TextAreaField('Title',validators = [Required()])
     description = TextAreaField(" the blog you need",validators=[Required()])
-    category = RadioField('Label', choices=[ ('gamesblog','gamesblog'), ('traditionalblog','traditionalblog'),('quotes','quotes'),('productblog','productblog')],validators=[Required()])
     submit = SubmitField('Submit')
-
+    category = RadioField('Label', choices=[ ('productpitch','productpitch')],validators=[Required()])
 class CommentForm(FlaskForm):
 	description = TextAreaField('Add comment',validators=[Required()])
 	submit = SubmitField()
 
-class UpdateBlogForm(FlaskForm):
-    title = TextAreaField('Tell us about you.',validators = [Required()])
-    image=TextAreaField('your images',validators=[Required()])
-    description=TextAreaField(" the blog you need",validators=[Required()])
-    submit = SubmitField('Submit')
 class UpdateProfileForm(FlaskForm):
     bio = TextAreaField('Tell us about your you.',validators = [Required()])
     submit = SubmitField('Submit')

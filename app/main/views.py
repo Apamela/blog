@@ -1,41 +1,37 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from .forms import BlogForm,UpdateBlogForm,UpdateProfileForm
-from ..models import User,Comment                          
+from .forms import BlogForm,UpdateProfileForm
+from ..models import User,Comment,Blog                      
 from flask_login import login_required,current_user
 from .. import db
 
 
 
 # Views
+@main.route('/')
 def index():
   
     '''
     View root page function that returns the index page and its data
     '''
     
-    blog =  blog.query.filter_by().first()
+    
     title = 'Welcome'
-    quotes =  blog.query.filter_by(category="quotes")
-    traditionalblog = blog.query.filter_by(category = "traditionalblog")
-    gamesblog = blog.query.filter_by(category = "gamesblog ")
-    productblog =  blog.query.filter_by(category = "productpitch")
-
-    updates = Update.get_all_updates(blog_id=Blog.id)
-    return render_template('index.html', title = title, blog= blog,quotes=quotes,traditionalblog=traditionalblog,gamesblog=gamesblog,productblog=productblog)
+    productblog = Blog.query.filter_by(category = "productblog")
+    return render_template('index.html', title = title,productblog=productblog)
 
 @main.route('/bloges/new/', methods = ['GET','POST'])
 @login_required
 def new_blog():
-    form = blogForm()
-    my_updates = Update.query.filter_by(blog_id = blog.id)
+    form = BlogForm()
+    # my_updates = Update.query.filter_by(blog_id = blog.id)
     if form.validate_on_submit():
         description = form.description.data
         title = form.title.data
         user_id = current_user
         category = form.category.data
         print(current_user._get_current_object().id)
-        new_blog = blog(user_id =current_user._get_current_object().id, title = title,description=description,category=category)
+        new_blog = Blog(user_id =current_user._get_current_object().id, title = title,description=description,category=category)
         db.session.add(new_blog)
         db.session.commit()
         
@@ -69,6 +65,7 @@ def update_profile(uname):
     form = UpdateProfile()
 
     if form.validate_on_submit():
+
         user.bio = form.bio.data
 
         db.session.add(user)
@@ -78,15 +75,14 @@ def update_profile(uname):
 
     return render_template('profile/update.html',form =form)
 
+@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(uname):
+    user = User.query.filter_by(username = uname).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',uname=uname))
 
-
-# @main.route('/user/<uname>/update/pic',methods= ['POST'])
-# @login_required
-# def update_pic(uname):
-#     user = User.query.filter_by(username = uname).first()
-#     if 'photo' in request.files:
-#         filename = photos.save(request.files['photo'])
-#         path = f'photos/{filename}'
-#         user.profile_pic_path = path
-#         db.session.commit()
-#     return redirect(url_for('main.profile',uname=uname))

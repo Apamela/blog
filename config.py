@@ -10,7 +10,7 @@ class Config:
     SIMPLEMDE_USE_CDN = True
 
     # SECRET_KEY ='a rondom string'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:pamela@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:pamela@localhost/blog'
     UPLOADED_PHOTOS_DEST='app/static/photos'
     
     
@@ -30,7 +30,7 @@ class ProdConfig(Config):
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:pamela@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:pamela@localhost/blog'
     DEBUG = True
 
 config_options = {

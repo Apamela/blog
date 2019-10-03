@@ -1,21 +1,22 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% extends 'bootstrap/base.html' %}
-
+{% include 'navbar.html' %}
 
 {% block content %}
+
 <div class="container">
 <div class="row">
 <div class="jumbotron">
 
      {{wtf.quick_form(form)}}
 	<ul style="list-style: none;">
-    {% for pitch in pitches %}
+    {% for blog in bloges %}
 <div class="list-group">
 	<a href="#">
 <div class="list-item">
-		<p>{{pitch.id}}</p>
+		<p>{{blog.id}}</p>
 </div>
-	<h4>{{ pitch.description }}</h4>
+	<h4>{{ blog.description }}</h4>
 	<h6> Posted by {{user.username}}.</h6>
 	</a>
 </div>
